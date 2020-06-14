@@ -21,8 +21,6 @@ RUN set -x \
     && chown -R steam:steam ${STEAM_HOME_DIR}
 
 USER steam
-CMD [ "/home/steam/gm/install.sh" ]
-
-VOLUME $STEAM_APP_DIR
+CMD [ "/home/steam/install.sh" ]
 
 EXPOSE 27015/tcp 27015/udp

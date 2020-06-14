@@ -5,8 +5,6 @@ services:
         container_name: gmod-server
         restart: unless-stopped
         environment:
-            - STEAM_API_KEY=
-            - STEAM_COLLECTION=
             - GMOD_GAMEMODE=terrortown
         ports:
             - 27015:27015/tcp
