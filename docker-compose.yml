@@ -6,6 +6,9 @@ services:
         restart: unless-stopped
         environment:
             - GMOD_GAMEMODE=terrortown
+            - GMOD_CSS=false
+        env_file: 
+            server-cfg.env
         ports:
             - 27015:27015/tcp
             - 27015:27015/udp
