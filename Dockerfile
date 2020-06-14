@@ -14,19 +14,19 @@ ENV GMOD_TF2 false
 
 ADD install.sh ${STEAM_HOME_DIR}/install.sh
 ADD server-cfg.sh ${STEAM_HOME_DIR}/server-cfg.sh
-ADD entrypoint.sh ${STEAM_APP_DIR}/entrypoint.sh
+ADD entrypoint.sh ${STEAM_HOME_DIR}/entrypoint.sh
 
 RUN set -x \
     && chmod 755 ${STEAM_HOME_DIR}/install.sh \
     && chmod 755 ${STEAM_HOME_DIR}/server-cfg.sh \
-    && chmod 755 ${STEAM_APP_DIR}/entrypoint.sh \
-    && chown -R steam:steam ${STEAM_HOME_DIR}
+    && chmod 755 ${STEAM_HOME_DIR}/entrypoint.sh \
+    && chown -R steam:steam ${STEAM_HOME_DIR} 
 
 USER steam
 RUN sh /home/steam/install.sh
 RUN sh /home/steam/server-cfg.sh
 
-WORKDIR ${STEAM_APP_DIR}
-ENTRYPOINT [ "entrypoint.sh" ]
+WORKDIR ${STEAM_HOME_DIR}
+ENTRYPOINT [ "./entrypoint.sh" ]
 
 EXPOSE 27015/tcp 27015/udp
