@@ -20,9 +20,7 @@ RUN set -x \
     && wget url \
     && chmod 755 ${STEAM_APP_DIR}/install.sh \
     && wget url \
-    && chmod 755 ${STEAM_APP_DIR}/entrypoint.sh \
-
-
+    && chmod 755 ${STEAM_APP_DIR}/entrypoint.sh 
 
 USER steam
 
