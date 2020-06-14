@@ -1,0 +1,18 @@
+version: '3.3'
+services: 
+    gmod-server:
+        build: .
+        container_name: gmod-server
+        restart: unless-stopped
+        environment:
+            - STEAM_API_KEY=
+            - STEAM_COLLECTION=
+            - GMOD_GAMEMODE=terrortown
+        ports:
+            - 27015:27015/tcp
+            - 27015:27015/udp
+        volumes: 
+            - gmod-data:/home/steam/gm
+
+volumes: 
+    gmod-data:        
