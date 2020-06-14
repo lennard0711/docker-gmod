@@ -29,9 +29,8 @@ RUN set -x \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/*
 
-CMD [ "/home/steam/gm/install.sh" ]
-
 USER steam
+CMD [ "/home/steam/gm/install.sh" ]
 
 VOLUME $STEAM_APP_DIR
 
