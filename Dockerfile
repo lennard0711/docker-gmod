@@ -29,7 +29,6 @@ RUN sh /home/steam/install.sh
 RUN sh /home/steam/server-cfg.sh
 
 WORKDIR ${STEAM_HOME_DIR}
-
-CMD ["${STEAM_APP_DIR}/srcds_run -console -maxplayers ${GMOD_PLAYERS} -game garrysmod +gamemode ${GMOD_GAMEMODE} +map ${GMOD_DEFAULT_MAP} -authkey ${STEAM_API_KEY} +host_workshop_collection ${STEAM_COLLECTION}"]
+ENTRYPOINT [ "./entrypoint.sh" ]
 
 EXPOSE 27015/tcp 27015/udp
