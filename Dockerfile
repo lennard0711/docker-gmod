@@ -9,8 +9,10 @@ ENV STEAM_API_KEY false
 ENV STEAM_COLLECTION 1297312862
 
 ENV GMOD_GAMEMODE terrortown
-ENV GMOD_CSS true
+ENV GMOD_CSS false
 ENV GMOD_TF2 false
+ENV GMOD_DEFAULT_MAP gm_construct
+ENV GMOD_PLAYERS 16
 
 ADD install.sh ${STEAM_HOME_DIR}/install.sh
 ADD server-cfg.sh ${STEAM_HOME_DIR}/server-cfg.sh
@@ -27,6 +29,7 @@ RUN sh /home/steam/install.sh
 RUN sh /home/steam/server-cfg.sh
 
 WORKDIR ${STEAM_HOME_DIR}
-ENTRYPOINT [ "./entrypoint.sh" ]
+
+CMD ["${STEAM_APP_DIR}/srcds_run -console -maxplayers ${GMOD_PLAYERS} -game garrysmod +gamemode ${GMOD_GAMEMODE} +map ${GMOD_DEFAULT_MAP} -authkey ${STEAM_API_KEY} +host_workshop_collection ${STEAM_COLLECTION}"]
 
 EXPOSE 27015/tcp 27015/udp

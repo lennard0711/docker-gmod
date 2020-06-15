@@ -1,9 +1,16 @@
-ENV STEAM_HOME_DIR /home/steam
-ENV STEAM_APP_DIR /home/steam/gm
-ENV STEAM_CMD_DIR /home/steam/steamcmd
-ENV STEAM_API_KEY false
-ENV STEAM_COLLECTION 1297312862
+# A containerized GMod Server (Under Development)
+This is a Docker Container for a completly customizable GMod Server.
 
-ENV GMOD_GAMEMODE terrortown
-ENV GMOD_CSS true
-ENV GMOD_TF2 false
+## What works
+- Installing the Server
+- Adding CSS and TF2 Files
+- Manually (!) starting the server in the container
+
+## Known Bugs
+- The Server doesn't start properly ([S_API FAIL] Tried to access Steam interface SteamUser020 before SteamAPI_Init succeeded.)
+
+## TODO
+- Automatic server startup
+- adding a Server.cfg
+- adding the ENV variables for the server conf
+- Documenting everything
