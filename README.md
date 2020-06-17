@@ -7,7 +7,7 @@ This is a Docker Container for a completly customizable GMod Server.
 - Manually (!) starting the server in the container
 
 ## Known Bugs
-- The Server doesn't start properly - Issue #1
+- The Server doesn't start properly - [Issue](https://github.com/lennard7001/docker-gmod/issues/1)
 
 ## TODO
 - Automatic server startup
