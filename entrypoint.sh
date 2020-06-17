@@ -38,7 +38,5 @@ if [ ${GMOD_CSS} = false ] && [ ${GMOD_TF2} = true ]; then
 }' > $STEAM_APP_DIR/garrysmod/cfg/mount.cfg
 fi
 
-
-# Starts the server
-sleep 5
-sh ${STEAM_APP_DIR}/srcds_run -console -maxplayers ${GMOD_PLAYERS} -game garrysmod +gamemode ${GMOD_GAMEMODE} +map ${GMOD_DEFAULT_MAP} -authkey ${STEAM_API_KEY} +host_workshop_collection ${STEAM_COLLECTION}
+# Start Server
+${STEAM_APP_DIR}/srcds_run -maxplayers ${GMOD_PLAYERS} -game garrysmod +gamemode ${GMOD_GAMEMODE} +map ${GMOD_DEFAULT_MAP} -authkey ${STEAM_API_KEY} +host_workshop_collection ${STEAM_COLLECTION}

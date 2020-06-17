@@ -9,7 +9,7 @@ services:
             - GMOD_CSS=false
             - GMOD_TF2=false
         env_file: 
-            server-cfg.env
+            - .env
         ports:
             - 27015:27015/tcp
             - 27015:27015/udp
