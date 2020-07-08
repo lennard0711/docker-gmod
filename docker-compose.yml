@@ -4,6 +4,7 @@ services:
         build: .
         container_name: gmod-server
         restart: unless-stopped
+        tty: true
         environment:
             - GMOD_GAMEMODE=terrortown
             - GMOD_CSS=false
