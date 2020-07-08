@@ -25,8 +25,7 @@ RUN set -x \
     && chown -R steam:steam ${STEAM_HOME_DIR}
 
 USER steam
-RUN sh /home/steam/install.sh
-RUN sh /home/steam/server-cfg.sh
+RUN /home/steam/install.sh
 
 EXPOSE 27015/tcp 27015/udp
 
