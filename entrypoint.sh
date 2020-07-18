@@ -39,7 +39,7 @@ fi
 rm ${STEAM_APP_DIR}/garrysmod/cfg/server.cfg
 
 # Set server variables
-for LINE in $(compgen -A variable | grep 'HOSTNAME\|RCON_\|SV_\|NET_')
+for LINE in $(compgen -A variable | grep 'HOSTNAME\|RCON_\|SV_\|NET_\|DECALFREQUENCY')
 do
     ENV_NAME=${LINE}
     ENV_VAL=$(printenv ${ENV_NAME})
