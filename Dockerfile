@@ -1,6 +1,6 @@
 FROM cm2network/steamcmd:root
 
-LABEL maintainer="Lennard Indlekofer <info@lennard7001.com>"
+LABEL maintainer="Lennard Indlekofer <info@lennard0711.com>"
 
 ENV STEAM_HOME_DIR /home/steam
 ENV STEAM_APP_DIR /home/steam/gm
