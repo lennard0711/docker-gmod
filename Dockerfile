@@ -14,20 +14,31 @@ ENV GMOD_TF2 false
 ENV GMOD_DEFAULT_MAP gm_construct
 ENV GMOD_PLAYERS 16
 
-ADD install.sh ${STEAM_HOME_DIR}/install.sh
-ADD server-cfg.sh ${STEAM_HOME_DIR}/server-cfg.sh
 ADD entrypoint.sh ${STEAM_HOME_DIR}/entrypoint.sh
 
 RUN set -x \
-    && chmod 755 ${STEAM_HOME_DIR}/install.sh \
-    && chmod 755 ${STEAM_HOME_DIR}/server-cfg.sh \
     && chmod 755 ${STEAM_HOME_DIR}/entrypoint.sh \
     && chown -R steam:steam ${STEAM_HOME_DIR}
 
 USER steam
-RUN /home/steam/install.sh
+RUN set -x \
+    && ${STEAM_CMD_DIR}/steamcmd.sh +login anonymous +force_install_dir ${STEAM_APP_DIR} +app_update 4020 +quit \
+    && echo "gamemode ${GMOD_GAMEMODE}" > ${STEAM_APP_DIR}/garrysmod/cfg/autoexec.cfg
 
 EXPOSE 27015/tcp 27015/udp
+
+ENV HOSTNAME "lennard0711 dockerized GMod Server"
+ENV RCON_PASSWORD changeme
+ENV SV_LOGBANS 1
+ENV SV_LOGECHO 1
+ENV SV_LOGFILE 1
+ENV SV_LOG_ONEFILE 0
+ENV NET_MAXFILESIZE 60
+ENV SV_MINRATE 3500
+ENV SV_MAXRATE 0
+ENV DECALFREQUENCY 10
+ENV SV_MAXUPDATERATE 33
+ENV SV_MINUPDATERATE 10
 
 WORKDIR ${STEAM_HOME_DIR}
 ENTRYPOINT ["./entrypoint.sh"]

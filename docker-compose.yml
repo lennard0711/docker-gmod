@@ -11,6 +11,7 @@ services:
             - GMOD_TF2=false
         env_file: 
             - .env
+            - config.env
         ports:
             - 27015:27015/tcp
             - 27015:27015/udp

@@ -34,7 +34,29 @@ elif [ ${GMOD_CSS} = false ] && [ ${GMOD_TF2} = true ]; then
 }' > $STEAM_APP_DIR/garrysmod/cfg/mount.cfg
 fi
 
-${STEAM_HOME_DIR}/server-cfg.sh
+# Create server config 
 
-# Start Server
+rm ${STEAM_APP_DIR}/garrysmod/cfg/server.cfg
+
+# Set server variables
+for LINE in $(compgen -A variable | grep 'HOSTNAME\|RCON_\|SV_\|NET_')
+do
+    ENV_NAME=${LINE}
+    ENV_VAL=$(printenv ${ENV_NAME})
+    CONF_NAME=$(echo $ENV_NAME | awk '{print tolower($0)}')
+    echo $CONF_NAME \"$ENV_VAL\" >> ${STEAM_APP_DIR}/garrysmod/cfg/server.cfg
+done
+
+# Set TTT variables
+if [ ${GMOD_GAMEMODE} = "terrortown" ]; then
+    for LINE in $(compgen -A variable | grep TTT_)
+    do
+        ENV_NAME=${LINE}
+        ENV_VAL=$(printenv ${ENV_NAME})
+        CONF_NAME=$(echo $ENV_NAME | awk '{print tolower($0)}')
+        echo $CONF_NAME \"$ENV_VAL\" >> ${STEAM_APP_DIR}/garrysmod/cfg/server.cfg
+    done
+fi
+
+# Start the server
 ${STEAM_APP_DIR}/srcds_run -maxplayers ${GMOD_PLAYERS} -game garrysmod +gamemode ${GMOD_GAMEMODE} +map ${GMOD_DEFAULT_MAP} -authkey ${STEAM_API_KEY} +host_workshop_collection ${STEAM_COLLECTION}
