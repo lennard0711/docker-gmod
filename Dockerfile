@@ -12,7 +12,8 @@ ENV GMOD_GAMEMODE=terrortown \
     GMOD_CSS=false \
     GMOD_TF2=false \
     GMOD_DEFAULT_MAP=ttt_minecraft_b5 \
-    GMOD_PLAYERS=16
+    GMOD_PLAYERS=16 \
+    GMOD_NO_CONF=false
 
 ADD entrypoint.sh ${STEAM_HOME_DIR}/entrypoint.sh
 

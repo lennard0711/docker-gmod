@@ -12,6 +12,7 @@ services:
             - GMOD_TF2=true # If you collection uses TF2 textures set this to true
             - GMOD_DEFAULT_MAP=ttt_minecraft_b5 # This is the name of the default map
             - GMOD_PLAYERS=16 # This is the number of max players on the server
+            - GMOD_NO_CONF=false # This variable dis-/enables the config creation
         env_file: 
             - .env # Set your STEAM_API_KEY in this file
             - config.env # Change the server config in this file
