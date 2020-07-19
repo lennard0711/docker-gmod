@@ -1,10 +1,7 @@
-# A containerized GMod Server (Under Development)
-This is a Docker Container for a completly customizable GMod Server.
+# A containerized GMod Server
+This docker image creates a GMod Server that you can configure via the environment variables.
 
-## What works
-- Installing the Server
-- Adding CSS and TF2 Files
+## Currently supported gamemodes
 - TTT
 
-## TODO
-- Documenting everything
+# Adding Documentation soon

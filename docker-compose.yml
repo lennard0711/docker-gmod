@@ -2,21 +2,24 @@ version: '3.3'
 services: 
     gmod-server:
         build: .
-        container_name: gmod-server
-        restart: unless-stopped
-        tty: true
+        container_name: gmod-server # The name of the container
+        restart: unless-stopped # Restarts the server unless you (!) stop it
+        tty: true # This is needed since the steamcmd needs a tty to run properly
         environment:
-            - GMOD_GAMEMODE=terrortown
-            - GMOD_CSS=false
-            - GMOD_TF2=false
+            - STEAM_COLLECTION=1297312862 # This is the ID of the Steam collection the server will be using
+            - GMOD_GAMEMODE=terrortown # This is the gamemode of the server
+            - GMOD_CSS=true # If you collection uses CSS textures set this to true
+            - GMOD_TF2=true # If you collection uses TF2 textures set this to true
+            - GMOD_DEFAULT_MAP=ttt_minecraft_b5 # This is the name of the default map
+            - GMOD_PLAYERS=16 # This is the number of max players on the server
         env_file: 
-            - .env
-            - config.env
+            - .env # Set your STEAM_API_KEY in this file
+            - config.env # Change the server config in this file
         ports:
-            - 27015:27015/tcp
-            - 27015:27015/udp
+            - 27015:27015/tcp # This exposes the game port
+            - 27015:27015/udp # This exposes the game port
         volumes: 
-            - gmod-data:/home/steam/gm
+            - gmod-data:/home/steam/gm # This volume keeps your data persistent between restarts
 
 volumes: 
-    gmod-data:        
+    gmod-data:

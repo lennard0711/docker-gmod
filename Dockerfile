@@ -11,7 +11,7 @@ ENV STEAM_HOME_DIR=/home/steam \
 ENV GMOD_GAMEMODE=terrortown \
     GMOD_CSS=false \
     GMOD_TF2=false \
-    GMOD_DEFAULT_MAP=gm_construct \
+    GMOD_DEFAULT_MAP=ttt_minecraft_b5 \
     GMOD_PLAYERS=16
 
 ADD entrypoint.sh ${STEAM_HOME_DIR}/entrypoint.sh
@@ -24,8 +24,6 @@ USER steam
 RUN set -x \
     && ${STEAM_CMD_DIR}/steamcmd.sh +login anonymous +force_install_dir ${STEAM_APP_DIR} +app_update 4020 +quit \
     && echo "gamemode ${GMOD_GAMEMODE}" > ${STEAM_APP_DIR}/garrysmod/cfg/autoexec.cfg
-
-EXPOSE 27015/tcp 27015/udp
 
 ENV HOSTNAME="lennard0711 dockerized GMod Server" \
     RCON_PASSWORD=changeme \
@@ -104,5 +102,6 @@ ENV TTT_PREPTIME_SECONDS=25 \
     TTT_ALLOW_DISCOMB_JUMP=1 \
     TTT_SPAWN_WAVE_INTERVAL=3 
 
+EXPOSE 27015/tcp 27015/udp
 WORKDIR ${STEAM_HOME_DIR}
 ENTRYPOINT ["./entrypoint.sh"]
