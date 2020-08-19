@@ -6,27 +6,14 @@ ENV STEAM_HOME_DIR=/home/steam \
     STEAM_APP_DIR=/home/steam/gm \
     STEAM_CMD_DIR=/home/steam/steamcmd \
     STEAM_API_KEY=false \
-    STEAM_COLLECTION=1297312862
-
-ENV GMOD_GAMEMODE=terrortown \
+    STEAM_COLLECTION=1297312862 \
+    GMOD_GAMEMODE=terrortown \
     GMOD_CSS=false \
     GMOD_TF2=false \
     GMOD_DEFAULT_MAP=ttt_minecraft_b5 \
     GMOD_PLAYERS=16 \
-    GMOD_NO_CONF=false
-
-ADD entrypoint.sh ${STEAM_HOME_DIR}/entrypoint.sh
-
-RUN set -x \
-    && chmod 755 ${STEAM_HOME_DIR}/entrypoint.sh \
-    && chown -R steam:steam ${STEAM_HOME_DIR}
-
-USER steam
-RUN set -x \
-    && ${STEAM_CMD_DIR}/steamcmd.sh +login anonymous +force_install_dir ${STEAM_APP_DIR} +app_update 4020 +quit \
-    && echo "gamemode ${GMOD_GAMEMODE}" > ${STEAM_APP_DIR}/garrysmod/cfg/autoexec.cfg
-
-ENV HOSTNAME="lennard0711 dockerized GMod Server" \
+    GMOD_NO_CONF=false \
+    HOSTNAME="lennard0711 dockerized GMod Server" \
     RCON_PASSWORD=changeme \
     SV_LOGBANS=1 \
     SV_LOGECHO=1 \
@@ -37,9 +24,8 @@ ENV HOSTNAME="lennard0711 dockerized GMod Server" \
     SV_MAXUPDATERATE=33 \
     SV_MINUPDATERATE=10 \
     NET_MAXFILESIZE=60 \
-    DECALFREQUENCY=10
-
-ENV TTT_PREPTIME_SECONDS=25 \
+    DECALFREQUENCY=10 \
+    TTT_PREPTIME_SECONDS=25 \
     TTT_FIRSTPREPTIME=30 \
     TTT_POSTTIME_SECONDS=20 \
     TTT_HASTE=1 \
@@ -102,6 +88,17 @@ ENV TTT_PREPTIME_SECONDS=25 \
     TTT_LOCATIONAL_VOICE=0 \
     TTT_ALLOW_DISCOMB_JUMP=1 \
     TTT_SPAWN_WAVE_INTERVAL=3 
+
+ADD entrypoint.sh ${STEAM_HOME_DIR}/entrypoint.sh
+
+RUN set -x \
+    && chmod 755 ${STEAM_HOME_DIR}/entrypoint.sh \
+    && chown -R steam:steam ${STEAM_HOME_DIR}
+
+USER steam
+RUN set -x \
+    && ${STEAM_CMD_DIR}/steamcmd.sh +login anonymous +force_install_dir ${STEAM_APP_DIR} +app_update 4020 +quit \
+    && echo "gamemode ${GMOD_GAMEMODE}" > ${STEAM_APP_DIR}/garrysmod/cfg/autoexec.cfg
 
 EXPOSE 27015/tcp 27015/udp
 WORKDIR ${STEAM_HOME_DIR}
