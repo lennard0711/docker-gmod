@@ -106,5 +106,5 @@ RUN set -x \
 EXPOSE 27015/tcp 27015/udp
 WORKDIR ${STEAM_HOME_DIR}
 
-ENTRYPOINT ["/sbin/tini", "--"]
-CMD ["/bin/bash", "entrypoint.sh"]
+ENTRYPOINT ["tini", "--"]
+CMD ["bash", "entrypoint.sh"]
