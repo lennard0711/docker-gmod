@@ -93,7 +93,10 @@ ADD entrypoint.sh ${STEAM_HOME_DIR}/entrypoint.sh
 
 RUN set -x \
     && chmod 755 ${STEAM_HOME_DIR}/entrypoint.sh \
-    && chown -R steam:steam ${STEAM_HOME_DIR}
+    && chown -R steam:steam ${STEAM_HOME_DIR} \
+	&& dpkg --add-architecture i386 \
+	&& apt-get update \
+	&& apt-get install -y --no-install-recommends --no-install-suggests tini=0.18.0-1
 
 USER steam
 RUN set -x \
@@ -102,4 +105,6 @@ RUN set -x \
 
 EXPOSE 27015/tcp 27015/udp
 WORKDIR ${STEAM_HOME_DIR}
-ENTRYPOINT ["./entrypoint.sh"]
+
+ENTRYPOINT ["/sbin/tini", "--"]
+CMD ["/bin/bash", "entrypoint.sh"]
