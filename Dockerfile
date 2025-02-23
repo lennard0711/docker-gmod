@@ -96,7 +96,7 @@ RUN set -x \
     && chown -R steam:steam ${STEAM_HOME_DIR} \
 	&& dpkg --add-architecture i386 \
 	&& apt-get update \
-	&& apt-get install -y --no-install-recommends --no-install-suggests tini=0.18.0-1
+	&& apt-get install -y --no-install-recommends --no-install-suggests tini
 
 USER steam
 RUN set -x \
